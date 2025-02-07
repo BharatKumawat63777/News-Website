@@ -9,9 +9,10 @@ export const fetchNews = createAsyncThunk(
   "news/fetchNews",
   async (params, { getState }) => {
     const { country, category, pageSize, page } = getState().news;
-
+    console.log("Before url fatching data: ", API_KEY);
     const url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${API_KEY}&page=${page}&pageSize=${pageSize}`;
     const response = await axios.get(url);
+    console.log("after fetching data: ", url);
 
     return response.data;
   }
