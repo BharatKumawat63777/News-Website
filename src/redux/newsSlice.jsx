@@ -11,13 +11,13 @@ export const fetchNews = createAsyncThunk(
     const { country, category, pageSize, page } = getState().news;
     console.log("Before url fatching data: ", API_KEY);
     const url = `https://newsapi.org/v2/top-headlines?country=us&category=science&apiKey=${API_KEY}&page=${page}&pageSize=${pageSize}`;
-    const response = await axios.get(url,{
+    const response = await axios.get(url, {
       headers: {
-        "User-Agent": "Mozilla/5.0",
-        "Accept": "application/json",
+        Accept: "application/json",
       },
     });
-    console.log("after fetching data: ", url);
+
+    console.log("after fetching data: ", url, response.data);
 
     return response.data;
   }
