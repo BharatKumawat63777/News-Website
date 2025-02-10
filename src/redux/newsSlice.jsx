@@ -10,12 +10,9 @@ export const fetchNews = createAsyncThunk(
   async (params, { getState }) => {
     const { country, category, pageSize, page } = getState().news;
     console.log("Before url fatching data: ", API_KEY);
+    const proxy = "https://cors-anywhere.herokuapp.com/";
     const url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${API_KEY}&page=${page}&pageSize=${pageSize}`;
-    const response = await axios.get(url, {
-      headers: {
-        Accept: "application/json",
-      },
-    });
+    const response = await axios.get(url + proxy);
 
     console.log("after fetching data: ", url, response.data);
 
