@@ -1,19 +1,18 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-// API Key
-const API_KEY = import.meta.env.VITE_API_KEY;
 
 // Async thunk for fetching news
 export const fetchNews = createAsyncThunk(
   "news/fetchNews",
   async (params, { getState }) => {
+    const NEWS_URL = "http://localhost:5000/news";
     const { country, category, pageSize, page } = getState().news;
-    console.log("Before url fatching data: ", API_KEY);
-    const proxy = "https://cors-anywhere.herokuapp.com/";
-    const url = `https://newsapi.org/v2/top-headlines?country=${country}&category=${category}&apiKey=${API_KEY}&page=${page}&pageSize=${pageSize}`;
+    console.log("Before url fatching data: ");
+    
+    const url = ``;
     console.log("Url: ", url);
-    const response = await axios.get(url + proxy);
+    const response = await axios.get(`${NEWS_URL}?country=${country}&category=${category}`);
 
     console.log("after fetching data: ", response.data);
 
