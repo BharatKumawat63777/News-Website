@@ -20,6 +20,7 @@ app.get("/news", async (req, res) => {
         apiKey: API_KEY,
       },
     });
+    console.log("Response: ", response);
     res.json(response.data);
   } catch (error) {
     res.status(500).json({ error: "Failed to fetch news" });

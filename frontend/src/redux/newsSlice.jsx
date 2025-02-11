@@ -1,7 +1,6 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import axios from "axios";
 
-
 // Async thunk for fetching news
 export const fetchNews = createAsyncThunk(
   "news/fetchNews",
@@ -9,12 +8,13 @@ export const fetchNews = createAsyncThunk(
     const NEWS_URL = "http://localhost:5000/news";
     const { country, category, pageSize, page } = getState().news;
     console.log("Before url fatching data: ");
-    
-    const url = ``;
-    console.log("Url: ", url);
-    const response = await axios.get(`${NEWS_URL}?country=${country}&category=${category}`);
 
-    console.log("after fetching data: ", response.data);
+    console.log("Url: ", NEWS_URL);
+    const response = await axios.get(
+      `${NEWS_URL}?country=${country}&category=${category}`
+    );
+
+    console.log("after fetching data: ", response);
 
     return response.data;
   }

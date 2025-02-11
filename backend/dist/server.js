@@ -28,7 +28,7 @@ app.get("/news", async (req, res) => {
   }
 });
 app.get("/", (req, res) => {
-  res.json("load page");
+  res.send("hey complete");
 });
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => console.log(`Server running on port http://localhost:${PORT}`));
