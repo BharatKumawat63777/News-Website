@@ -13,6 +13,7 @@ console.log("key: ", API_KEY, " ", NEWS_API_URL);
 app.get("/news", async (req, res) => {
   try {
     const { country, category } = req.query;
+    console.log("country: ", country, "category: ", category);
     const response = await axios.get(NEWS_API_URL, {
       params: {
         country: country || "us",
@@ -28,7 +29,7 @@ app.get("/news", async (req, res) => {
 });
 
 app.get("/", (req, res) => {
-  res.send("hey complete");
+  res.send({ API_KEY });
 });
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () =>
