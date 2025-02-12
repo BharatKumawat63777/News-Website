@@ -5,16 +5,14 @@ import axios from "axios";
 export const fetchNews = createAsyncThunk(
   "news/fetchNews",
   async (params, { getState }) => {
-    const NEWS_URL = "https://news-website-06wk.onrender.com/news";
+    const NEWS_URL = "http://localhost:5000/api/sources";
     const { country, category, pageSize, page } = getState().news;
     console.log("Before url fatching data: ");
 
     console.log("Url: ", NEWS_URL);
-    const response = await axios.get(
-      `${NEWS_URL}?country=${country}&category=${category}`
-    );
+    const response = await axios.get(NEWS_URL);
 
-    console.log("after fetching data: ", response);
+    console.log("after fetching data: ", response.data.sources);
 
     return response.data;
   }
@@ -54,7 +52,7 @@ const newsSlice = createSlice({
       })
       .addCase(fetchNews.fulfilled, (state, action) => {
         state.loading = false;
-        state.articles = action.payload.articles;
+        state.articles = action.payload.sources;
         state.totalResults = action.payload.totalResults;
       })
       .addCase(fetchNews.rejected, (state, action) => {

@@ -18,7 +18,6 @@ const page = () => {
     dispatch(fetchNews()); // Fetch articles when component mounts
   }, [dispatch, country, category, pageSize, page]);
 
- 
   const handlePrevClick = () => {
     if (page > 1) {
       dispatch(setPage(page - 1)); // Go to the previous page
@@ -46,11 +45,12 @@ const page = () => {
       <div className="row">
         {!loading &&
           articles?.map((element, index) => {
+           
             return (
               <div className="col-md-4" key={index}>
                 <PageItem
                   key={index}
-                  title={element.title ? element.title.slice(0, 40) : ""}
+                  title={element.name ? element.name.slice(0, 40) : ""}
                   description={
                     element.description
                       ? element.description.slice(0, 70)
