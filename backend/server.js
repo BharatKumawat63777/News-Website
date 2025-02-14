@@ -106,6 +106,7 @@ app.get("/api/everything", async (req, res) => {
 
 // Route to get sources
 app.get("/api/sources", async (req, res) => {
+  console.log("I am in this website");
   try {
     const response = await newsapi.v2.sources({
       category: "technology",
