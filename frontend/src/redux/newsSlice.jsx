@@ -5,14 +5,14 @@ import axios from "axios";
 export const fetchNews = createAsyncThunk(
   "news/fetchNews",
   async (params, { getState }) => {
-    const NEWS_URL = "http://localhost:5000/api/sources";
+    const NEWS_URL = "https://news-website-06wk.onrender.com/api/sources";
     const { country, category, pageSize, page } = getState().news;
     console.log("Before url fatching data: ");
 
     console.log("Url: ", NEWS_URL);
     const response = await axios.get(NEWS_URL);
 
-    console.log("after fetching data: ", response.data.sources);
+    console.log("after fetching data: ", response.data);
 
     return response.data;
   }

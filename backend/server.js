@@ -43,6 +43,21 @@ const NewsAPI = require("newsapi");
 
 const app = express();
 const PORT = process.env.PORT || 5000;
+
+app.use(
+  cors({
+    origin: [
+      "https://news-website-1-l8x5.onrender.com",
+      "http://localhost:3000",
+    ],
+  })
+);
+
+if (!process.env.NEWS_API_KEY) {
+  console.error("❌ Missing NEWS_API_KEY in environment variables");
+  process.exit(1);
+}
+
 const newsapi = new NewsAPI(process.env.NEWS_API_KEY);
 console.log("News API: ", newsapi);
 // Middleware
@@ -97,6 +112,7 @@ app.get("/api/sources", async (req, res) => {
       language: "en",
       country: "us",
     });
+    console.log("Fetch data: ", response);
     res.json(response);
   } catch (error) {
     res.status(500).json({ error: "Error fetching sources" });
